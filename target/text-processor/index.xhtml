@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Text Processor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container h:outputLabel {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-container h:inputTextarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .form-container .button-container {
+            text-align: center;
+        }
+        .form-container h:commandButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-container h:commandButton:hover {
+            background-color: #45a049;
+        }
+        .result-container {
+            margin-top: 20px;
+        }
+        .result-container h:outputText {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="container">
+        <h:form styleClass="form-container">
+            <h:outputLabel for="textInput" value="Ingrese el Texto de Entrada:"/>
+            <h:inputTextarea id="textInput" value="#{textProcessorController.textInput}" rows="10" cols="50"/>
+
+            <div class="button-container">
+                <h:commandButton value="Procesar" action="#{textProcessorController.processText}" />
+            </div>
+
+            <div class="result-container">
+                <h:outputText value="Texto de Salida:"/>
+                <h:panelGrid columns="1" rendered="#{not empty textProcessorController.processedTexts}">
+                    <ui:repeat value="#{textProcessorController.processedTexts}" var="processedText">
+                        <h:outputText value="#{processedText}"/>
+                    </ui:repeat>
+                </h:panelGrid>
+                <h:panelGroup rendered="#{empty textProcessorController.processedTexts}">
+                    <h:outputText value="No hay texto procesado aún." rendered="#{empty textProcessorController.processedTexts}"/>
+                </h:panelGroup>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,3 @@
+com\text\processor\controller\TextProcessorController.class
+com\text\processor\service\TextProcessorService.class
+com\text\processor\model\TextEntry.class

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Text Processor</title>
+</h:head>
+<h:body style="text-align: center;">
+    <h:form style="display: inline-block; text-align: left;">
+        <h:outputLabel for="textInput" value="Ingrese el Texto de Entrada:" style="display: block;"/>
+
+        <br/>
+
+        <h:inputTextarea id="textInput" value="#{textProcessorController.textInput}" rows="10" cols="50" style="display: block; margin: 0 auto;"/>
+
+        <br/>
+
+        <h:commandButton value="Procesar" action="#{textProcessorController.processText}" style="display: block; margin: 0 auto;" />
+
+        <br/>
+
+        <h:outputText value="Texto de Salida:" style="display: block;"/>
+
+        <h:panelGroup style="display: block; margin: 0 auto;">
+            <ui:repeat value="#{textProcessorController.processedTexts}" var="processedText">
+                <h:outputText value="#{processedText}"/>
+                <br/>
+            </ui:repeat>
+        </h:panelGroup>
+    </h:form>
+</h:body>
+</html>
